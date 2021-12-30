@@ -33,6 +33,8 @@ public class ClusterGroupEntity {
 
     private Boolean belongToApp;
 
+    private Double maxAllowedQps;
+
     public String getMachineId() {
         return machineId;
     }
@@ -76,6 +78,14 @@ public class ClusterGroupEntity {
     public ClusterGroupEntity setBelongToApp(Boolean belongToApp) {
         this.belongToApp = belongToApp;
         return this;
+    }
+
+    public Double getMaxAllowedQps() {
+        return maxAllowedQps;
+    }
+
+    public void setMaxAllowedQps(Double maxAllowedQps) {
+        this.maxAllowedQps = maxAllowedQps;
     }
 
     @Override

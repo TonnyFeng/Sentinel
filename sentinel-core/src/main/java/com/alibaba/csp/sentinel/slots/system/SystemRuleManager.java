@@ -319,6 +319,7 @@ public final class SystemRuleManager {
         }
 
         // load. BBR algorithm.
+        // 完全按照RT,BBR算法来
         if (highestSystemLoadIsSet && getCurrentSystemAvgLoad() > highestSystemLoad) {
             if (!checkBbr(currentThread)) {
                 throw new SystemBlockException(resourceWrapper.getName(), "load");

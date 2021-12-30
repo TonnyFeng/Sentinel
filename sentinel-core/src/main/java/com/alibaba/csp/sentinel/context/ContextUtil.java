@@ -108,6 +108,11 @@ public class ContextUtil {
      *               Consumer's app name. The origin is useful when we want to control different
      *               invoker/consumer separately.
      * @return The invocation context of the current thread
+     *
+     * 1.先从ThreadLocal中获取，如果能获取到直接返回，如果获取不到则继续第2步
+     * 2.从一个static的map中根据上下文的名称获取，如果能获取到则直接返回，否则继续第3步
+     * 3.加锁后进行一次double check，如果还是没能从map中获取到，则创建一个EntranceNode，并把该EntranceNode添加到一个全局的ROOT节点中去，然后将该节点添加到map中去(这部分代码在上述代码中省略了)
+     * 4.根据EntranceNode创建一个上下文，并将该上下文保存到ThreadLocal中去，下一个请求可以直接获取
      */
     public static Context enter(String name, String origin) {
         if (Constants.CONTEXT_DEFAULT_NAME.equals(name)) {
@@ -118,8 +123,11 @@ public class ContextUtil {
     }
 
     protected static Context trueEnter(String name, String origin) {
+        // 先从ThreadLocal中获取
         Context context = contextHolder.get();
         if (context == null) {
+            // 如果ThreadLocal中获取不到Context
+            // 则根据name从map中获取根节点，只要是相同的资源名，就能直接从map中获取到node
             Map<String, DefaultNode> localCacheNameMap = contextNameNodeMap;
             DefaultNode node = localCacheNameMap.get(name);
             if (node == null) {
@@ -135,6 +143,7 @@ public class ContextUtil {
                                 setNullContext();
                                 return NULL_CONTEXT;
                             } else {
+                                // 创建一个新的入口节点
                                 node = new EntranceNode(new StringResourceWrapper(name, EntryType.IN), null);
                                 // Add entrance node.
                                 Constants.ROOT.addChild(node);
@@ -150,8 +159,10 @@ public class ContextUtil {
                     }
                 }
             }
+            // 创建一个新的Context，并设置Context的根节点，即设置EntranceNode
             context = new Context(node, name);
             context.setOrigin(origin);
+            // 将该Context保存到ThreadLocal中去
             contextHolder.set(context);
         }
 

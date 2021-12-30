@@ -40,8 +40,9 @@ public class DegradeSlot extends AbstractLinkedProcessorSlot<DefaultNode> {
     @Override
     public void entry(Context context, ResourceWrapper resourceWrapper, DefaultNode node, int count,
                       boolean prioritized, Object... args) throws Throwable {
+        //降级检查
         performChecking(context, resourceWrapper);
-
+        //调用下一个Slot
         fireEntry(context, resourceWrapper, node, count, prioritized, args);
     }
 

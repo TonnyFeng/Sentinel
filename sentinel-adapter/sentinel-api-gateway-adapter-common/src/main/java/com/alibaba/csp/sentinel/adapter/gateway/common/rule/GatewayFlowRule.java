@@ -18,13 +18,14 @@ package com.alibaba.csp.sentinel.adapter.gateway.common.rule;
 import java.util.Objects;
 
 import com.alibaba.csp.sentinel.adapter.gateway.common.SentinelGatewayConstants;
+import com.alibaba.csp.sentinel.slots.block.Rule;
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
 
 /**
  * @author Eric Zhao
  * @since 1.6.0
  */
-public class GatewayFlowRule {
+public class GatewayFlowRule implements Rule {
 
     private String resource;
     private int resourceMode = SentinelGatewayConstants.RESOURCE_MODE_ROUTE_ID;
@@ -52,6 +53,7 @@ public class GatewayFlowRule {
         this.resource = resource;
     }
 
+    @Override
     public String getResource() {
         return resource;
     }

@@ -120,6 +120,7 @@ public class CtSph implements Sph {
         if (context instanceof NullContext) {
             // The {@link NullContext} indicates that the amount of context has exceeded the threshold,
             // so here init the entry only. No rule checking will be done.
+            //{@link NullContext}表示上下文的数量超过了阈值，因此这里只初始化条目。不进行规则检查。
             return new CtEntry(resourceWrapper, null, context);
         }
 
@@ -132,7 +133,7 @@ public class CtSph implements Sph {
         if (!Constants.ON) {
             return new CtEntry(resourceWrapper, null, context);
         }
-
+        // 获取该资源对应的SlotChain
         ProcessorSlot<Object> chain = lookProcessChain(resourceWrapper);
 
         /*
@@ -145,9 +146,11 @@ public class CtSph implements Sph {
 
         Entry e = new CtEntry(resourceWrapper, chain, context);
         try {
+            // 执行Slot的entry方法
             chain.entry(context, resourceWrapper, null, count, prioritized, args);
         } catch (BlockException e1) {
             e.exit(count, args);
+            // 抛出BlockExecption
             throw e1;
         } catch (Throwable e1) {
             // This should not happen, unless there are errors existing in Sentinel internal.
@@ -179,14 +182,16 @@ public class CtSph implements Sph {
     /**
      * Get {@link ProcessorSlotChain} of the resource. new {@link ProcessorSlotChain} will
      * be created if the resource doesn't relate one.
-     *
+     * 获取资源的{@link ProcessorSlotChain}。如果资源不相关，将创建新的{@link ProcessorSlotChain}。
      * <p>Same resource({@link ResourceWrapper#equals(Object)}) will share the same
      * {@link ProcessorSlotChain} globally, no matter in which {@link Context}.<p/>
-     *
+     * 相同的资源（{@link ResourceWrapper#equals（Object）}）将全局共享相同的{@link ProcessorSlotChain}，无论在哪个{@link Context}中<p>
      * <p>
+     *
      * Note that total {@link ProcessorSlot} count must not exceed {@link Constants#MAX_SLOT_CHAIN_SIZE},
      * otherwise null will return.
      * </p>
+     * 请注意，{@link ProcessorSlot}总数不得超过{@link Constants#MAX_SLOT_CHAIN_SIZE}，否则将返回null。
      *
      * @param resourceWrapper target resource
      * @return {@link ProcessorSlotChain} of the resource

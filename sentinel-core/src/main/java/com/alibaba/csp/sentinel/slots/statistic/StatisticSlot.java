@@ -51,14 +51,29 @@ import com.alibaba.csp.sentinel.slots.block.BlockException;
 @Spi(order = Constants.ORDER_STATISTIC_SLOT)
 public class StatisticSlot extends AbstractLinkedProcessorSlot<DefaultNode> {
 
+    /**
+     * 1.通过node中的当前的实时统计指标信息进行规则校验
+     * 2.如果通过了校验，则重新更新node中的实时指标数据
+     * 3.如果被block或出现了异常了，则重新更新node中block的指标或异常指标
+     * @param context         current {@link Context}
+     * @param resourceWrapper current resource
+     * @param node
+     * @param count           tokens needed
+     * @param prioritized     whether the entry is prioritized
+     * @param args            parameters of the original call
+     * @throws Throwable
+     */
     @Override
     public void entry(Context context, ResourceWrapper resourceWrapper, DefaultNode node, int count,
                       boolean prioritized, Object... args) throws Throwable {
         try {
             // Do some checking.
+            // 触发下一个Slot的entry方法
             fireEntry(context, resourceWrapper, node, count, prioritized, args);
 
             // Request passed, add thread count and pass count.
+            // 如果能通过SlotChain中后面的Slot的entry方法，说明没有被限流或降级
+            // 统计信息
             node.increaseThreadNum();
             node.addPassRequest(count);
 

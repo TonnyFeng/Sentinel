@@ -15,11 +15,7 @@
  */
 package com.alibaba.csp.sentinel.dashboard.service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -27,6 +23,7 @@ import java.util.stream.Collectors;
 
 import com.alibaba.csp.sentinel.cluster.ClusterStateManager;
 import com.alibaba.csp.sentinel.dashboard.domain.cluster.state.ClusterUniversalStatePairVO;
+import com.alibaba.csp.sentinel.dashboard.rule.nacos.cluster.ClusterMapDataNacosPublisher;
 import com.alibaba.csp.sentinel.util.AssertUtil;
 import com.alibaba.csp.sentinel.util.function.Tuple2;
 
@@ -56,6 +53,8 @@ public class ClusterAssignServiceImpl implements ClusterAssignService {
     private SentinelApiClient sentinelApiClient;
     @Autowired
     private ClusterConfigService clusterConfigService;
+    @Autowired
+    private ClusterMapDataNacosPublisher clusterMapDataNacosPublisher;
 
     private boolean isMachineInApp(/*@NonEmpty*/ String machineId) {
         return machineId.contains(":");
@@ -137,6 +136,11 @@ public class ClusterAssignServiceImpl implements ClusterAssignService {
             result.getFailedClientSet().addAll(resultVO.getFailedClientSet());
             result.getFailedServerSet().addAll(resultVO.getFailedServerSet());
         }
+        try {
+            clusterMapDataNacosPublisher.publish( app , Collections.EMPTY_LIST);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return result;
     }
 
@@ -168,6 +172,12 @@ public class ClusterAssignServiceImpl implements ClusterAssignService {
 
         // Unbind remaining (unassigned) machines.
         applyAllRemainingMachineSet(app, remainingSet, failedClientSet);
+
+        try {
+            clusterMapDataNacosPublisher.publish( app , clusterMap );
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return new ClusterAppAssignResultVO()
             .setFailedClientSet(failedClientSet)

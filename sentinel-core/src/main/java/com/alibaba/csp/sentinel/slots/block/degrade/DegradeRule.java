@@ -25,6 +25,7 @@ import java.util.Objects;
  * Degrade is used when the resources are in an unstable state, these resources
  * will be degraded within the next defined time window. There are two ways to
  * measure whether a resource is stable or not:
+ * 降级在资源处于不稳定状态时使用，这些资源将在下一个定义的时间窗口内降级。有两种方法可以衡量资源是否稳定：
  * </p>
  * <ul>
  * <li>
@@ -36,9 +37,16 @@ import java.util.Objects;
  * access to this resource will be blocked.
  * </li>
  * <li>
+ * 平均响应时间（{@code DEGRADE_GRADE_RT}）：
+ * 当平均RT超过阈值（“DegradeRule”中的“count”，以毫秒为单位）时，资源进入准降级状态。
+ * 如果接下来5个请求的RT仍然超过此阈值，则此资源将降级，
+ * 这意味着在下一个时间窗口（在“时间窗口”中定义，以秒为单位）中，对此资源的所有访问都将被阻止。
+ * </li>
+ * <li>
  * Exception ratio: When the ratio of exception count per second and the
  * success qps exceeds the threshold, access to the resource will be blocked in
  * the coming window.
+ * 异常比率：当每秒异常计数与成功qps的比率超过阈值时，将在接下来的窗口中阻止对资源的访问。
  * </li>
  * </ul>
  *
@@ -55,29 +63,33 @@ public class DegradeRule extends AbstractRule {
 
     /**
      * Circuit breaking strategy (0: average RT, 1: exception ratio, 2: exception count).
+     * 降级策略
      */
     private int grade = RuleConstant.DEGRADE_GRADE_RT;
 
     /**
      * Threshold count.
+     * RT阈值，或异常比例阈值，在规则中设置
      */
     private double count;
 
     /**
      * Recovery timeout (in seconds) when circuit breaker opens. After the timeout, the circuit breaker will
      * transform to half-open state for trying a few requests.
+     * 时间窗口，在规则中设置
      */
     private int timeWindow;
 
     /**
      * Minimum number of requests (in an active statistic time span) that can trigger circuit breaking.
-     *
+     * 最低请求次数阈值 默认值为5
      * @since 1.7.0
      */
     private int minRequestAmount = RuleConstant.DEGRADE_DEFAULT_MIN_REQUEST_AMOUNT;
 
     /**
      * The threshold of slow request ratio in RT mode.
+     * RT模式下的慢速请求比率阈值。
      */
     private double slowRatioThreshold = 1.0d;
 

@@ -53,13 +53,14 @@ public class AuthoritySlot extends AbstractLinkedProcessorSlot<DefaultNode> {
         if (authorityRules == null) {
             return;
         }
-
+        // 根据资源名称获取相应的规则
         Set<AuthorityRule> rules = authorityRules.get(resource.getName());
         if (rules == null) {
             return;
         }
 
         for (AuthorityRule rule : rules) {
+            // 只要有一条规则校验不通过，就抛出AuthorityException
             if (!AuthorityRuleChecker.passCheck(rule, context)) {
                 throw new AuthorityException(context.getOrigin(), rule);
             }

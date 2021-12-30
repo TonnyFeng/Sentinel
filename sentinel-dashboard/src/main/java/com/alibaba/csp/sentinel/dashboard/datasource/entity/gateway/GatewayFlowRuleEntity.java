@@ -19,6 +19,7 @@ import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayFlowRule;
 import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayParamFlowItem;
 import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.RuleEntity;
 import com.alibaba.csp.sentinel.slots.block.Rule;
+import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
 
 import java.util.Date;
 import java.util.Objects;
@@ -211,7 +212,21 @@ public class GatewayFlowRuleEntity implements RuleEntity {
 
     @Override
     public Rule toRule() {
-        return null;
+        GatewayFlowRule flowRule = new GatewayFlowRule();
+        flowRule.setCount(this.count);
+        flowRule.setGrade(this.grade);
+        flowRule.setResource(this.resource);
+        flowRule.setBurst( this.burst );
+        if (this.controlBehavior != null) {
+            flowRule.setControlBehavior(this.controlBehavior);
+        }
+
+        flowRule.setIntervalSec( this.interval );
+        if (this.maxQueueingTimeoutMs != null) {
+            flowRule.setMaxQueueingTimeoutMs(this.maxQueueingTimeoutMs);
+        }
+        flowRule.setResourceMode(this.resourceMode);
+        return flowRule;
     }
 
     public Date getGmtModified() {

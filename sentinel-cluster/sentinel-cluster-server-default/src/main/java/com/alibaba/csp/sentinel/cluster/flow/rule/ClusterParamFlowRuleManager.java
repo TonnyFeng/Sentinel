@@ -51,6 +51,7 @@ public final class ClusterParamFlowRuleManager {
     /**
      * The default cluster parameter flow rule property supplier that creates a new
      * dynamic property for a specific namespace to manually do rule management.
+     * 默认群集参数流规则属性提供程序，它为特定命名空间创建新的动态属性以手动执行规则管理。
      */
     public static final Function<String, SentinelProperty<List<ParamFlowRule>>> DEFAULT_PROPERTY_SUPPLIER =
         new Function<String, SentinelProperty<List<ParamFlowRule>>>() {

@@ -22,9 +22,16 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
+import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.AuthorityRuleEntity;
+import com.alibaba.csp.sentinel.dashboard.rule.nacos.NacosConfigUtil;
 import com.alibaba.csp.sentinel.util.AssertUtil;
 
+import com.alibaba.nacos.api.config.ConfigService;
+import com.alibaba.nacos.api.exception.NacosException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
 
 /**
  * @author leyou
@@ -32,13 +39,36 @@ import org.springframework.stereotype.Component;
 @Component
 public class SimpleMachineDiscovery implements MachineDiscovery {
 
-    private final ConcurrentMap<String, AppInfo> apps = new ConcurrentHashMap<>();
+    private ConcurrentMap<String, AppInfo> apps ;
+
+
+    @Autowired
+    private ConfigService configService;
+
+    @PostConstruct
+    public void init(){
+        try {
+            apps =  NacosConfigUtil.getClusterAppInfo4Nacos(configService , "sentinel",
+                    NacosConfigUtil.CLUSTER_MACHINE_APPINFO,
+                    AppInfo.class);
+        } catch (NacosException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public long addMachine(MachineInfo machineInfo) {
         AssertUtil.notNull(machineInfo, "machineInfo cannot be null");
         AppInfo appInfo = apps.computeIfAbsent(machineInfo.getApp(), o -> new AppInfo(machineInfo.getApp(), machineInfo.getAppType()));
         appInfo.addMachine(machineInfo);
+        try {
+            NacosConfigUtil.setClusterAppInfo4Nacos(configService , "sentinel",
+                    NacosConfigUtil.CLUSTER_MACHINE_APPINFO,
+                    apps);
+        } catch (NacosException e) {
+            e.printStackTrace();
+        }
         return 1;
     }
 
@@ -48,6 +78,13 @@ public class SimpleMachineDiscovery implements MachineDiscovery {
         AppInfo appInfo = apps.get(app);
         if (appInfo != null) {
             return appInfo.removeMachine(ip, port);
+        }
+        try {
+            NacosConfigUtil.setClusterAppInfo4Nacos(configService , "sentinel",
+                    NacosConfigUtil.CLUSTER_MACHINE_APPINFO,
+                    apps);
+        } catch (NacosException e) {
+            e.printStackTrace();
         }
         return false;
     }
@@ -72,6 +109,13 @@ public class SimpleMachineDiscovery implements MachineDiscovery {
     public void removeApp(String app) {
         AssertUtil.assertNotBlank(app, "app name cannot be blank");
         apps.remove(app);
+        try {
+            NacosConfigUtil.setClusterAppInfo4Nacos(configService , "sentinel",
+                    NacosConfigUtil.CLUSTER_MACHINE_APPINFO,
+                    apps);
+        } catch (NacosException e) {
+            e.printStackTrace();
+        }
     }
 
 }

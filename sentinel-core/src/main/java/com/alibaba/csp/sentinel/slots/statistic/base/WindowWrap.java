@@ -26,23 +26,26 @@ public class WindowWrap<T> {
 
     /**
      * Time length of a single window bucket in milliseconds.
+     * 单个窗口存储桶的时间长度（毫秒）。
      */
     private final long windowLengthInMs;
 
     /**
      * Start timestamp of the window in milliseconds.
+     * 窗口的开始时间戳（毫秒）。
      */
     private long windowStart;
 
     /**
      * Statistic data.
+     * 统计数据。
      */
     private T value;
 
     /**
-     * @param windowLengthInMs a single window bucket's time length in milliseconds.
-     * @param windowStart      the start timestamp of the window
-     * @param value            statistic data
+     * @param windowLengthInMs a single window bucket's time length in milliseconds. 单个窗口存储桶的时间长度（毫秒）。
+     * @param windowStart      the start timestamp of the window 窗口的开始时间戳
+     * @param value            statistic data 统计数据。
      */
     public WindowWrap(long windowLengthInMs, long windowStart, T value) {
         this.windowLengthInMs = windowLengthInMs;

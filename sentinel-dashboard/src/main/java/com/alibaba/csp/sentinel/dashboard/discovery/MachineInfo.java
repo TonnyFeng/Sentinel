@@ -19,6 +19,9 @@ import java.util.Objects;
 
 import com.alibaba.csp.sentinel.dashboard.config.DashboardConfig;
 import com.alibaba.csp.sentinel.util.StringUtil;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 public class MachineInfo implements Comparable<MachineInfo> {
 
@@ -30,6 +33,8 @@ public class MachineInfo implements Comparable<MachineInfo> {
     private long lastHeartbeat;
     private long heartbeatVersion;
 
+    private boolean healthy;
+    private boolean dead;
     /**
      * Indicates the version of Sentinel client (since 0.2.0).
      */
@@ -103,7 +108,8 @@ public class MachineInfo implements Comparable<MachineInfo> {
         this.version = version;
         return this;
     }
-    
+
+
     public boolean isHealthy() {
         long delta = System.currentTimeMillis() - lastHeartbeat;
         return delta < DashboardConfig.getUnhealthyMachineMillis();

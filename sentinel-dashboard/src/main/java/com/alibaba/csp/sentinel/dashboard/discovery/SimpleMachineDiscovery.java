@@ -47,6 +47,7 @@ public class SimpleMachineDiscovery implements MachineDiscovery {
 
     @PostConstruct
     public void init(){
+        apps = new ConcurrentHashMap<>();
         try {
             apps =  NacosConfigUtil.getClusterAppInfo4Nacos(configService , "sentinel",
                     NacosConfigUtil.CLUSTER_MACHINE_APPINFO,

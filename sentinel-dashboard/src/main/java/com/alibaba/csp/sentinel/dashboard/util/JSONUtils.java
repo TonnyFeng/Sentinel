@@ -35,7 +35,7 @@ public class JSONUtils {
 
 
     public static <T> ConcurrentHashMap<String,T> parseConcurrentMap(Class<T> clazz, String string) {
-        JavaType javaType = getCollectionType(ConcurrentHashMap.class, clazz);
+        JavaType javaType = getCollectionType(ConcurrentHashMap.class, String.class , clazz);
         try {
             return (ConcurrentHashMap<String,T>) new ObjectMapper().readValue(string, javaType);
         } catch (IOException e) {

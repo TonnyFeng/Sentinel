@@ -15,6 +15,7 @@
  */
 package com.alibaba.csp.sentinel.dashboard.discovery;
 
+import java.io.Serializable;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Optional;
@@ -23,12 +24,18 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.alibaba.csp.sentinel.dashboard.config.DashboardConfig;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-public class AppInfo {
+//@JsonIgnoreProperties({ "shown", "dead" })
+public class AppInfo implements Serializable {
 
     private String app = "";
 
     private Integer appType = 0;
+
+    private boolean shown;
+
+    private boolean dead;
 
     private Set<MachineInfo> machines = ConcurrentHashMap.newKeySet();
 

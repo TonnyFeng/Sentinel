@@ -63,8 +63,8 @@ public abstract class LeapArray<T> {
     /**
      * The total bucket count is: {@code sampleCount = intervalInMs / windowLengthInMs}.
      *
-     * @param sampleCount  bucket count of the sliding window
-     * @param intervalInMs the total time interval of this {@link LeapArray} in milliseconds
+     * @param sampleCount  bucket count of the sliding window 滑动窗口的桶计数
+     * @param intervalInMs the total time interval of this {@link LeapArray} in milliseconds 此{@link LeapArray}的总时间间隔（毫秒）
      */
     public LeapArray(int sampleCount, int intervalInMs) {
         AssertUtil.isTrue(sampleCount > 0, "bucket count is invalid: " + sampleCount);
@@ -105,6 +105,14 @@ public abstract class LeapArray<T> {
      * @param startTime  the start time of the bucket in milliseconds
      * @param windowWrap current bucket
      * @return new clean bucket at given start time
+     */
+    /**
+     * 将给定铲斗重置为提供的开始时间，并重置该值。
+     * 参数：
+     * windowWrap–当前存储桶
+     * startTime–存储桶的开始时间（以毫秒为单位）
+     * 返回： 给定开始时间的新清洁铲斗 sentinel-core
+     * @return
      */
     protected abstract WindowWrap<T> resetWindowTo(WindowWrap<T> windowWrap, long startTime);
 
@@ -404,7 +412,7 @@ public abstract class LeapArray<T> {
 
     /**
      * Get the valid "head" bucket of the sliding window at current timestamp.
-     *
+     * 在当前时间戳获取滑动窗口的有效“head”bucket。
      * @return the "head" bucket if it exists and is valid; otherwise null
      */
     public WindowWrap<T> getValidHead() {

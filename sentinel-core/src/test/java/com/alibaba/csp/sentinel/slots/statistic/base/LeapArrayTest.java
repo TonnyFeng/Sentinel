@@ -30,8 +30,11 @@ public class LeapArrayTest extends AbstractTimeBasedTest {
     
     @Test
     public void testGetValidHead() {
+        //单个窗口时间长度
         int windowLengthInMs = 100;
+        //此{@link LeapArray}的总时间间隔（毫秒）
         int intervalInMs = 1000;
+        //滑动窗口的桶计数
         int sampleCount = intervalInMs / windowLengthInMs;
         LeapArray<AtomicInteger> leapArray = new LeapArray<AtomicInteger>(sampleCount, intervalInMs) {
             @Override
@@ -39,6 +42,14 @@ public class LeapArrayTest extends AbstractTimeBasedTest {
                 return new AtomicInteger(0);
             }
 
+            /**
+             * 将给定铲斗重置为提供的开始时间，并重置该值。
+             * 参数：
+             * windowWrap–当前存储桶
+             * startTime–存储桶的开始时间（以毫秒为单位）
+             * 返回： 给定开始时间的新清洁铲斗 sentinel-core
+             * @return
+             */
             @Override
             protected WindowWrap<AtomicInteger> resetWindowTo(WindowWrap<AtomicInteger> windowWrap, long startTime) {
                 windowWrap.resetTo(startTime);

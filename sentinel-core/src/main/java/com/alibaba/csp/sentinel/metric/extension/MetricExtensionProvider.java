@@ -15,11 +15,11 @@
  */
 package com.alibaba.csp.sentinel.metric.extension;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.alibaba.csp.sentinel.log.RecordLog;
 import com.alibaba.csp.sentinel.spi.SpiLoader;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Get all {@link MetricExtension} via SPI.

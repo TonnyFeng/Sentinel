@@ -2,7 +2,6 @@ package com.alibaba.csp.sentinel.slots.statistic.metric;
 
 import com.alibaba.csp.sentinel.slots.statistic.metric.occupy.FutureBucketLeapArray;
 import com.alibaba.csp.sentinel.util.TimeUtil;
-
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

@@ -15,12 +15,12 @@
  */
 package com.alibaba.csp.sentinel.util;
 
+import com.alibaba.csp.sentinel.log.RecordLog;
+
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Enumeration;
-
-import com.alibaba.csp.sentinel.log.RecordLog;
 
 /**
  * Get host name and ip of the host.

@@ -1,12 +1,11 @@
 package com.alibaba.csp.sentinel.slots.block.authority;
 
-import java.util.Collections;
-import java.util.List;
-
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
-
 import org.junit.After;
 import org.junit.Test;
+
+import java.util.Collections;
+import java.util.List;
 
 import static org.junit.Assert.*;
 

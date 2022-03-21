@@ -15,17 +15,14 @@
  */
 package com.alibaba.csp.sentinel.slots.clusterbuilder;
 
-import static org.junit.Assert.assertNotSame;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Test;
-
 import com.alibaba.csp.sentinel.Entry;
 import com.alibaba.csp.sentinel.SphU;
 import com.alibaba.csp.sentinel.context.ContextUtil;
 import com.alibaba.csp.sentinel.node.DefaultNode;
 import com.alibaba.csp.sentinel.node.Node;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 /**
  * @author jialiang.linjl

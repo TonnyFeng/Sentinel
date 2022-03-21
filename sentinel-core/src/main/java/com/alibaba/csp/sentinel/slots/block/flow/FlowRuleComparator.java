@@ -15,9 +15,9 @@
  */
 package com.alibaba.csp.sentinel.slots.block.flow;
 
-import java.util.Comparator;
-
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
+
+import java.util.Comparator;
 
 /**
  * Comparator for flow rules.

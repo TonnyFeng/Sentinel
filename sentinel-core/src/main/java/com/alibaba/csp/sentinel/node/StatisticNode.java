@@ -15,16 +15,16 @@
  */
 package com.alibaba.csp.sentinel.node;
 
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.LongAdder;
-
 import com.alibaba.csp.sentinel.node.metric.MetricNode;
 import com.alibaba.csp.sentinel.slots.statistic.metric.ArrayMetric;
 import com.alibaba.csp.sentinel.slots.statistic.metric.Metric;
 import com.alibaba.csp.sentinel.util.TimeUtil;
 import com.alibaba.csp.sentinel.util.function.Predicate;
+
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.LongAdder;
 
 /**
  * <p>The statistic node keep three kinds of real-time statistics metrics:</p>
@@ -93,8 +93,11 @@ public class StatisticNode implements Node {
      * Holds statistics of the recent {@code INTERVAL} milliseconds. The {@code INTERVAL} is divided into time spans
      * by given {@code sampleCount}.
      */
-    private transient volatile Metric rollingCounterInSecond = new ArrayMetric(SampleCountProperty.SAMPLE_COUNT,
-        IntervalProperty.INTERVAL);
+    // 定义了一个使用数组保存数据的计量器
+    private transient volatile Metric rollingCounterInSecond =
+            // SAMPLE_COUNT，样本窗口数量，默认值为2
+            // INTERVAL，时间窗长度，默认值1000毫秒
+            new ArrayMetric(SampleCountProperty.SAMPLE_COUNT, IntervalProperty.INTERVAL);
 
     /**
      * Holds statistics of the recent 60 seconds. The windowLengthInMs is deliberately set to 1000 milliseconds,
@@ -198,6 +201,9 @@ public class StatisticNode implements Node {
 
     @Override
     public double passQps() {
+        // rollingCounterInSecond.pass() 当前时间窗中统计的通过的请求数量
+        // rollingCounterInSecond.getWindowIntervalInSec() 时间窗长度
+        // 这两个数相除，计算出的就是QPS
         return rollingCounterInSecond.pass() / rollingCounterInSecond.getWindowIntervalInSec();
     }
 
@@ -244,6 +250,7 @@ public class StatisticNode implements Node {
 
     @Override
     public void addPassRequest(int count) {
+        // 为滑动计数器增加本次访问的数据
         rollingCounterInSecond.addPass(count);
         rollingCounterInMinute.addPass(count);
     }

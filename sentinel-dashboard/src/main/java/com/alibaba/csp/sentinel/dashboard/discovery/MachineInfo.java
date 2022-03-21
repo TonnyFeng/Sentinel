@@ -15,13 +15,10 @@
  */
 package com.alibaba.csp.sentinel.dashboard.discovery;
 
-import java.util.Objects;
-
 import com.alibaba.csp.sentinel.dashboard.config.DashboardConfig;
 import com.alibaba.csp.sentinel.util.StringUtil;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonIgnoreType;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import java.util.Objects;
 
 public class MachineInfo implements Comparable<MachineInfo> {
 

@@ -15,15 +15,14 @@
  */
 package com.alibaba.csp.sentinel.slots.system;
 
-import java.lang.management.ManagementFactory;
-import java.lang.management.RuntimeMXBean;
-import java.util.concurrent.TimeUnit;
-
 import com.alibaba.csp.sentinel.Constants;
 import com.alibaba.csp.sentinel.log.RecordLog;
 import com.alibaba.csp.sentinel.util.StringUtil;
-
 import com.sun.management.OperatingSystemMXBean;
+
+import java.lang.management.ManagementFactory;
+import java.lang.management.RuntimeMXBean;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author jialiang.linjl

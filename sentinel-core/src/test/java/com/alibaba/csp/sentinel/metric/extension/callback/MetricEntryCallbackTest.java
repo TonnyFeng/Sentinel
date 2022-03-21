@@ -20,7 +20,6 @@ import com.alibaba.csp.sentinel.context.Context;
 import com.alibaba.csp.sentinel.metric.extension.MetricExtensionProvider;
 import com.alibaba.csp.sentinel.slotchain.StringResourceWrapper;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowException;
-
 import org.junit.Assert;
 import org.junit.Test;
 

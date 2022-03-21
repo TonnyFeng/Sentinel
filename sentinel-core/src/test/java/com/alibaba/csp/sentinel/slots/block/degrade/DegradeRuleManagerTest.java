@@ -15,15 +15,14 @@
  */
 package com.alibaba.csp.sentinel.slots.block.degrade;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
 import com.alibaba.csp.sentinel.slots.block.degrade.circuitbreaker.CircuitBreaker;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.junit.Assert.*;
 

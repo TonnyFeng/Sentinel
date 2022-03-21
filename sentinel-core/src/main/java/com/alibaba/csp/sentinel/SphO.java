@@ -15,9 +15,6 @@
  */
 package com.alibaba.csp.sentinel;
 
-import java.lang.reflect.Method;
-import java.util.List;
-
 import com.alibaba.csp.sentinel.context.ContextUtil;
 import com.alibaba.csp.sentinel.log.RecordLog;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
@@ -26,6 +23,9 @@ import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRuleManager;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
 import com.alibaba.csp.sentinel.slots.system.SystemRule;
 import com.alibaba.csp.sentinel.slots.system.SystemRuleManager;
+
+import java.lang.reflect.Method;
+import java.util.List;
 
 /**
  * Conceptually, physical or logical resource that need protection should be

@@ -15,6 +15,8 @@
  */
 package com.alibaba.csp.sentinel.eagleeye;
 
+import com.alibaba.csp.sentinel.concurrent.NamedThreadFactory;
+
 import java.util.Collections;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -23,8 +25,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
-
-import com.alibaba.csp.sentinel.concurrent.NamedThreadFactory;
 
 class StatLogController {
 

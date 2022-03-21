@@ -15,20 +15,20 @@
  */
 package com.alibaba.csp.sentinel.slots.system;
 
+import com.alibaba.csp.sentinel.EntryType;
+import com.alibaba.csp.sentinel.slotchain.StringResourceWrapper;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import com.alibaba.csp.sentinel.EntryType;
-import com.alibaba.csp.sentinel.slotchain.StringResourceWrapper;
-import com.alibaba.csp.sentinel.slots.block.BlockException;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author Eric Zhao

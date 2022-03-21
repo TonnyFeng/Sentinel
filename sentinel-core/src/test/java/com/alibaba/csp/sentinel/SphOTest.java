@@ -15,14 +15,14 @@
  */
 package com.alibaba.csp.sentinel;
 
-import static org.junit.Assert.*;
+import com.alibaba.csp.sentinel.context.ContextUtil;
+import com.alibaba.csp.sentinel.util.StringUtil;
+import org.junit.Test;
 
 import java.lang.reflect.Method;
 
-import org.junit.Test;
-
-import com.alibaba.csp.sentinel.util.StringUtil;
-import com.alibaba.csp.sentinel.context.ContextUtil;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Test cases for {@link SphO}.

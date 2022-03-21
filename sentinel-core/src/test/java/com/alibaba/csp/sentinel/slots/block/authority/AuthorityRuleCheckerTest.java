@@ -3,11 +3,11 @@ package com.alibaba.csp.sentinel.slots.block.authority;
 import com.alibaba.csp.sentinel.context.ContextTestUtil;
 import com.alibaba.csp.sentinel.context.ContextUtil;
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
-
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Test cases for {@link AuthorityRuleChecker}.

@@ -1,6 +1,5 @@
 package com.alibaba.csp.sentinel.dashboard.rule.nacos.cluster;
 
-import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.FlowRuleEntity;
 import com.alibaba.csp.sentinel.dashboard.domain.cluster.ClusterGroupEntity;
 import com.alibaba.csp.sentinel.dashboard.domain.cluster.request.ClusterAppAssignMap;
 import com.alibaba.csp.sentinel.dashboard.rule.DynamicRulePublisher;

@@ -35,8 +35,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.*;
-import static org.hamcrest.Matchers.*;
 
 /**
  * Test cases for {@link SpiLoader}.

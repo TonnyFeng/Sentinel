@@ -15,22 +15,18 @@
  */
 package com.alibaba.csp.sentinel.node.metric;
 
+import com.alibaba.csp.sentinel.config.SentinelConfig;
+import com.alibaba.csp.sentinel.log.LogBase;
+import com.alibaba.csp.sentinel.log.RecordLog;
+import com.alibaba.csp.sentinel.util.PidUtil;
+
 import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
-
-import com.alibaba.csp.sentinel.log.LogBase;
-import com.alibaba.csp.sentinel.util.PidUtil;
-import com.alibaba.csp.sentinel.config.SentinelConfig;
-import com.alibaba.csp.sentinel.log.RecordLog;
+import java.util.*;
 
 /**
  * This class is responsible for writing {@link MetricNode} to disk:

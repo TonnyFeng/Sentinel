@@ -16,11 +16,7 @@
 package com.alibaba.csp.sentinel.slots;
 
 import com.alibaba.csp.sentinel.log.RecordLog;
-import com.alibaba.csp.sentinel.slotchain.AbstractLinkedProcessorSlot;
-import com.alibaba.csp.sentinel.slotchain.DefaultProcessorSlotChain;
-import com.alibaba.csp.sentinel.slotchain.ProcessorSlot;
-import com.alibaba.csp.sentinel.slotchain.ProcessorSlotChain;
-import com.alibaba.csp.sentinel.slotchain.SlotChainBuilder;
+import com.alibaba.csp.sentinel.slotchain.*;
 import com.alibaba.csp.sentinel.spi.Spi;
 import com.alibaba.csp.sentinel.spi.SpiLoader;
 
@@ -39,6 +35,7 @@ public class DefaultSlotChainBuilder implements SlotChainBuilder {
     public ProcessorSlotChain build() {
         ProcessorSlotChain chain = new DefaultProcessorSlotChain();
 
+        // 通过SPI方式构建Slot
         List<ProcessorSlot> sortedSlotList = SpiLoader.of(ProcessorSlot.class).loadInstanceListSorted();
         for (ProcessorSlot slot : sortedSlotList) {
             if (!(slot instanceof AbstractLinkedProcessorSlot)) {

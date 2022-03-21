@@ -15,11 +15,11 @@
  */
 package com.alibaba.csp.sentinel.slots.block.flow.controller;
 
-import java.util.concurrent.atomic.AtomicLong;
-
-import com.alibaba.csp.sentinel.util.TimeUtil;
 import com.alibaba.csp.sentinel.node.Node;
 import com.alibaba.csp.sentinel.slots.block.flow.TrafficShapingController;
+import com.alibaba.csp.sentinel.util.TimeUtil;
+
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * <p>

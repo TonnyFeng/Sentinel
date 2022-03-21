@@ -16,10 +16,10 @@
 package com.alibaba.csp.sentinel.slots.block.degrade;
 
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
-
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 /**
  * @author Eric Zhao

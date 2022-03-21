@@ -22,24 +22,28 @@ package com.alibaba.csp.sentinel.slots.statistic.base;
  * @author jialiang.linjl
  * @author Eric Zhao
  */
+// 样本窗口实例，泛型T为MetricBucket
 public class WindowWrap<T> {
 
     /**
      * Time length of a single window bucket in milliseconds.
      * 单个窗口存储桶的时间长度（毫秒）。
      */
+    // 样本窗口长度
     private final long windowLengthInMs;
 
     /**
      * Start timestamp of the window in milliseconds.
      * 窗口的开始时间戳（毫秒）。
      */
+    // 样本窗口的起始时间戳
     private long windowStart;
 
     /**
      * Statistic data.
      * 统计数据。
      */
+    // 当前样本窗口中的统计数据，其类型为MetricBucket
     private T value;
 
     /**

@@ -15,10 +15,10 @@
  */
 package com.alibaba.csp.sentinel.util;
 
-import static org.junit.Assert.*;
-
 import org.junit.Assert;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class VersionUtilTest {
 

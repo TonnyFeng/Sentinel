@@ -15,14 +15,14 @@
  */
 package com.alibaba.csp.sentinel.node.metric;
 
+import com.alibaba.csp.sentinel.config.SentinelConfig;
+
 import java.io.DataInputStream;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.nio.charset.Charset;
 import java.util.List;
-
-import com.alibaba.csp.sentinel.config.SentinelConfig;
 
 /**
  * 从指定目录下找出所有的metric文件，并按照指定时间戳进行检索，参考{@link MetricSearcher#find(long, int)}。

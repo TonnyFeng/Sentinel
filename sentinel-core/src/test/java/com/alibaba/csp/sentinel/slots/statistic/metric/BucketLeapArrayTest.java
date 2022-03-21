@@ -15,17 +15,16 @@
  */
 package com.alibaba.csp.sentinel.slots.statistic.metric;
 
+import com.alibaba.csp.sentinel.slots.statistic.base.WindowWrap;
+import com.alibaba.csp.sentinel.slots.statistic.data.MetricBucket;
+import com.alibaba.csp.sentinel.util.TimeUtil;
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
-
-import com.alibaba.csp.sentinel.slots.statistic.base.WindowWrap;
-import com.alibaba.csp.sentinel.slots.statistic.data.MetricBucket;
-import com.alibaba.csp.sentinel.util.TimeUtil;
-
-import org.junit.Test;
 
 import static org.junit.Assert.*;
 

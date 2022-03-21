@@ -15,15 +15,14 @@
  */
 package com.alibaba.csp.sentinel.slots.block.flow.controller;
 
+import com.alibaba.csp.sentinel.node.Node;
+import com.alibaba.csp.sentinel.test.AbstractTimeBasedTest;
+import org.junit.Test;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
-import org.junit.Test;
-
-import com.alibaba.csp.sentinel.node.Node;
-import com.alibaba.csp.sentinel.test.AbstractTimeBasedTest;
 
 /**
  * @author jialiang.linjl

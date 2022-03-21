@@ -16,7 +16,10 @@
 package com.alibaba.csp.sentinel.log.jul;
 
 import java.io.UnsupportedEncodingException;
-import java.util.logging.*;
+import java.util.logging.Formatter;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
+import java.util.logging.StreamHandler;
 
 /**
  * This Handler publishes log records to console by using {@link java.util.logging.StreamHandler}.

@@ -20,7 +20,6 @@ import com.alibaba.csp.sentinel.adapter.dubbo.DubboUtils;
 import com.alibaba.dubbo.rpc.Invocation;
 import com.alibaba.dubbo.rpc.Invoker;
 import com.alibaba.dubbo.rpc.RpcInvocation;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;

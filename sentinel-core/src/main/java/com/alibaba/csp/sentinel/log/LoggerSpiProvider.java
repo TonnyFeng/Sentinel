@@ -15,11 +15,11 @@
  */
 package com.alibaba.csp.sentinel.log;
 
+import com.alibaba.csp.sentinel.util.StringUtil;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ServiceLoader;
-
-import com.alibaba.csp.sentinel.util.StringUtil;
 
 /**
  * SPI provider of Sentinel {@link Logger}.

@@ -1,14 +1,13 @@
 package com.alibaba.csp.sentinel.slots.block.flow;
 
+import com.alibaba.csp.sentinel.slots.block.RuleConstant;
+import org.junit.Test;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import com.alibaba.csp.sentinel.slots.block.RuleConstant;
-
-import org.junit.Test;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Eric Zhao

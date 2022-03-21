@@ -4,21 +4,13 @@ import com.alibaba.csp.sentinel.context.Context;
 import com.alibaba.csp.sentinel.context.ContextTestUtil;
 import com.alibaba.csp.sentinel.context.ContextUtil;
 import com.alibaba.csp.sentinel.node.DefaultNode;
-import com.alibaba.csp.sentinel.slotchain.AbstractLinkedProcessorSlot;
-import com.alibaba.csp.sentinel.slotchain.DefaultProcessorSlotChain;
-import com.alibaba.csp.sentinel.slotchain.ProcessorSlot;
-import com.alibaba.csp.sentinel.slotchain.ProcessorSlotChain;
-import com.alibaba.csp.sentinel.slotchain.ResourceWrapper;
-import com.alibaba.csp.sentinel.slotchain.SlotChainProvider;
-import com.alibaba.csp.sentinel.slotchain.StringResourceWrapper;
+import com.alibaba.csp.sentinel.slotchain.*;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
 
 /**
  * Test cases for Sentinel internal {@link CtSph}.

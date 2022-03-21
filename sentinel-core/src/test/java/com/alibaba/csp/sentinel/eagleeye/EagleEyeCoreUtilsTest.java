@@ -15,12 +15,12 @@
  */
 package com.alibaba.csp.sentinel.eagleeye;
 
-import java.util.TimeZone;
-
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
+import java.util.TimeZone;
 
 public class EagleEyeCoreUtilsTest {
 

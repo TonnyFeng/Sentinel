@@ -15,10 +15,7 @@
  */
 package com.alibaba.csp.sentinel.dashboard.rule.nacos;
 
-import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.FlowRuleEntity;
 import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.RuleEntity;
-import com.alibaba.csp.sentinel.dashboard.discovery.AppInfo;
-import com.alibaba.csp.sentinel.dashboard.domain.cluster.ClusterGroupEntity;
 import com.alibaba.csp.sentinel.dashboard.util.JSONUtils;
 import com.alibaba.csp.sentinel.slots.block.Rule;
 import com.alibaba.csp.sentinel.util.AssertUtil;

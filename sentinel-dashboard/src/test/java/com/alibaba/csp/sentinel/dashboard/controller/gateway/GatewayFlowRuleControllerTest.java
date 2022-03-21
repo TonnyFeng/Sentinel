@@ -15,8 +15,6 @@
  */
 package com.alibaba.csp.sentinel.dashboard.controller.gateway;
 
-import com.alibaba.csp.sentinel.dashboard.auth.AuthorizationInterceptor;
-import com.alibaba.csp.sentinel.dashboard.auth.FakeAuthServiceImpl;
 import com.alibaba.csp.sentinel.dashboard.client.SentinelApiClient;
 import com.alibaba.csp.sentinel.dashboard.config.NoAuthConfigurationTest;
 import com.alibaba.csp.sentinel.dashboard.datasource.entity.gateway.GatewayFlowRuleEntity;
@@ -53,8 +51,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-import static com.alibaba.csp.sentinel.slots.block.RuleConstant.*;
 import static com.alibaba.csp.sentinel.adapter.gateway.common.SentinelGatewayConstants.*;
+import static com.alibaba.csp.sentinel.slots.block.RuleConstant.*;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 

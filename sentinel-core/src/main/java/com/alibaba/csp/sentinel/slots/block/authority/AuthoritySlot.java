@@ -15,9 +15,6 @@
  */
 package com.alibaba.csp.sentinel.slots.block.authority;
 
-import java.util.Map;
-import java.util.Set;
-
 import com.alibaba.csp.sentinel.Constants;
 import com.alibaba.csp.sentinel.context.Context;
 import com.alibaba.csp.sentinel.node.DefaultNode;
@@ -25,6 +22,9 @@ import com.alibaba.csp.sentinel.slotchain.AbstractLinkedProcessorSlot;
 import com.alibaba.csp.sentinel.slotchain.ProcessorSlot;
 import com.alibaba.csp.sentinel.slotchain.ResourceWrapper;
 import com.alibaba.csp.sentinel.spi.Spi;
+
+import java.util.Map;
+import java.util.Set;
 
 /**
  * A {@link ProcessorSlot} that dedicates to {@link AuthorityRule} checking.

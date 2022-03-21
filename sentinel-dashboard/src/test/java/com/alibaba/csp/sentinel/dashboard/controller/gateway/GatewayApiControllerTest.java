@@ -49,7 +49,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
-import static com.alibaba.csp.sentinel.adapter.gateway.common.SentinelGatewayConstants.*;
+import static com.alibaba.csp.sentinel.adapter.gateway.common.SentinelGatewayConstants.URL_MATCH_STRATEGY_EXACT;
+import static com.alibaba.csp.sentinel.adapter.gateway.common.SentinelGatewayConstants.URL_MATCH_STRATEGY_PREFIX;
 import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.*;
 

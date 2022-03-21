@@ -4,7 +4,6 @@ import com.alibaba.csp.sentinel.context.Context;
 import com.alibaba.csp.sentinel.context.ContextTestUtil;
 import com.alibaba.csp.sentinel.context.ContextUtil;
 import com.alibaba.csp.sentinel.slotchain.StringResourceWrapper;
-
 import org.junit.After;
 import org.junit.Test;
 

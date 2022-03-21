@@ -19,7 +19,6 @@ import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayFlowRule;
 import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayParamFlowItem;
 import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.RuleEntity;
 import com.alibaba.csp.sentinel.slots.block.Rule;
-import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
 
 import java.util.Date;
 import java.util.Objects;

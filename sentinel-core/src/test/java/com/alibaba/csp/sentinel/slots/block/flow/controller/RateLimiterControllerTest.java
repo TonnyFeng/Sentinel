@@ -15,17 +15,16 @@
  */
 package com.alibaba.csp.sentinel.slots.block.flow.controller;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
+import com.alibaba.csp.sentinel.node.Node;
+import com.alibaba.csp.sentinel.util.TimeUtil;
+import org.junit.Test;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.junit.Test;
-
-import com.alibaba.csp.sentinel.util.TimeUtil;
-import com.alibaba.csp.sentinel.node.Node;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 
 /**
  * @author jialiang.linjl

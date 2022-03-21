@@ -16,7 +16,6 @@
 package com.alibaba.csp.sentinel.context;
 
 import com.alibaba.csp.sentinel.Constants;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

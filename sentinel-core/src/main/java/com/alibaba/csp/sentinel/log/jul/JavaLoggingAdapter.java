@@ -15,10 +15,10 @@
  */
 package com.alibaba.csp.sentinel.log.jul;
 
-import java.util.logging.Handler;
-
 import com.alibaba.csp.sentinel.log.Logger;
 import com.alibaba.csp.sentinel.util.AssertUtil;
+
+import java.util.logging.Handler;
 
 /**
  * JUL adapter for Sentinel {@link Logger} SPI.

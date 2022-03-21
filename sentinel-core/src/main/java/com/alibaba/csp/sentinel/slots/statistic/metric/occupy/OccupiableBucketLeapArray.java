@@ -15,12 +15,12 @@
  */
 package com.alibaba.csp.sentinel.slots.statistic.metric.occupy;
 
-import java.util.List;
-
 import com.alibaba.csp.sentinel.slots.statistic.MetricEvent;
 import com.alibaba.csp.sentinel.slots.statistic.base.LeapArray;
 import com.alibaba.csp.sentinel.slots.statistic.base.WindowWrap;
 import com.alibaba.csp.sentinel.slots.statistic.data.MetricBucket;
+
+import java.util.List;
 
 /**
  * @author jialiang.linjl

@@ -15,13 +15,12 @@
  */
 package com.alibaba.csp.sentinel.slots.statistic.base;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
+import com.alibaba.csp.sentinel.test.AbstractTimeBasedTest;
 import org.junit.Test;
 
-import com.alibaba.csp.sentinel.test.AbstractTimeBasedTest;
+import java.util.concurrent.atomic.AtomicInteger;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertSame;
 
 /**
  * @author Eric Zhao

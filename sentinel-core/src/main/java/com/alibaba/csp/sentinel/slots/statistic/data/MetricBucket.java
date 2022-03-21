@@ -17,6 +17,7 @@ package com.alibaba.csp.sentinel.slots.statistic.data;
 
 import com.alibaba.csp.sentinel.config.SentinelConfig;
 import com.alibaba.csp.sentinel.slots.statistic.MetricEvent;
+
 import java.util.concurrent.atomic.LongAdder;
 
 /**
@@ -25,8 +26,11 @@ import java.util.concurrent.atomic.LongAdder;
  * @author jialiang.linjl
  * @author Eric Zhao
  */
+// 统计数据的封装类
 public class MetricBucket {
 
+    // 统计的数据存放在这里
+    // 这里要统计的数据是多维度的，这些维度类型在MetricEvent枚举中
     private final LongAdder[] counters;
 
     private volatile long minRt;
@@ -59,6 +63,7 @@ public class MetricBucket {
      * @return new metric bucket in initial state
      */
     public MetricBucket reset() {
+        // 将每个维度的统计数据清零
         for (MetricEvent event : MetricEvent.values()) {
             counters[event.ordinal()].reset();
         }
@@ -104,6 +109,7 @@ public class MetricBucket {
     }
 
     public void addPass(int n) {
+        // 向pass维度中增加统计数据
         add(MetricEvent.PASS, n);
     }
 

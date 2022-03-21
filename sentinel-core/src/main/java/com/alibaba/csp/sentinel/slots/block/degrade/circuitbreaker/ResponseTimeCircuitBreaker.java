@@ -15,9 +15,6 @@
  */
 package com.alibaba.csp.sentinel.slots.block.degrade.circuitbreaker;
 
-import java.util.List;
-import java.util.concurrent.atomic.LongAdder;
-
 import com.alibaba.csp.sentinel.Entry;
 import com.alibaba.csp.sentinel.context.Context;
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
@@ -26,6 +23,9 @@ import com.alibaba.csp.sentinel.slots.statistic.base.LeapArray;
 import com.alibaba.csp.sentinel.slots.statistic.base.WindowWrap;
 import com.alibaba.csp.sentinel.util.AssertUtil;
 import com.alibaba.csp.sentinel.util.TimeUtil;
+
+import java.util.List;
+import java.util.concurrent.atomic.LongAdder;
 
 /**
  * @author Eric Zhao

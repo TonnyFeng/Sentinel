@@ -15,16 +15,15 @@
  */
 package com.alibaba.csp.sentinel.slots.block.degrade.circuitbreaker;
 
-import java.util.concurrent.atomic.AtomicReference;
-
 import com.alibaba.csp.sentinel.Entry;
 import com.alibaba.csp.sentinel.context.Context;
-import com.alibaba.csp.sentinel.slotchain.ResourceWrapper;
 import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRule;
 import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRuleManager;
 import com.alibaba.csp.sentinel.util.AssertUtil;
 import com.alibaba.csp.sentinel.util.TimeUtil;
 import com.alibaba.csp.sentinel.util.function.BiConsumer;
+
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * @author Eric Zhao
@@ -67,9 +66,13 @@ public abstract class AbstractCircuitBreaker implements CircuitBreaker {
     @Override
     public boolean tryPass(Context context) {
         // Template implementation.
+        // 熔断器状态为关闭状态，则请求可以通过
         if (currentState.get() == State.CLOSED) {
             return true;
         }
+
+        // 熔断器状态为打开状态，此时再查看，
+        // 若下次时间窗时间点已经到达，且熔断器成功由Open变为了Half-Open，则请求通过
         if (currentState.get() == State.OPEN) {
             // For half-open state we allow a request for probing.
             return retryTimeoutArrived() && fromOpenToHalfOpen(context);

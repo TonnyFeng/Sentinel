@@ -1,17 +1,16 @@
 package com.alibaba.csp.sentinel.slots.block.authority;
 
-import java.util.Collections;
-
 import com.alibaba.csp.sentinel.EntryType;
 import com.alibaba.csp.sentinel.context.ContextTestUtil;
 import com.alibaba.csp.sentinel.context.ContextUtil;
 import com.alibaba.csp.sentinel.slotchain.ResourceWrapper;
 import com.alibaba.csp.sentinel.slotchain.StringResourceWrapper;
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Collections;
 
 /**
  * Test cases for {@link AuthoritySlot}.

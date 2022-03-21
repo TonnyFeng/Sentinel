@@ -15,13 +15,13 @@
  */
 package com.alibaba.csp.sentinel.log.jul;
 
+import com.alibaba.csp.sentinel.log.LogBase;
+import com.alibaba.csp.sentinel.util.PidUtil;
+
 import java.io.IOException;
 import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import com.alibaba.csp.sentinel.log.LogBase;
-import com.alibaba.csp.sentinel.util.PidUtil;
 
 import static com.alibaba.csp.sentinel.log.LogBase.LOG_OUTPUT_TYPE_CONSOLE;
 import static com.alibaba.csp.sentinel.log.LogBase.LOG_OUTPUT_TYPE_FILE;

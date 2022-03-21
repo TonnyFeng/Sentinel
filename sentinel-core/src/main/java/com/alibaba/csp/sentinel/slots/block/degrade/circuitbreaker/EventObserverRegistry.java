@@ -15,12 +15,12 @@
  */
 package com.alibaba.csp.sentinel.slots.block.degrade.circuitbreaker;
 
+import com.alibaba.csp.sentinel.util.AssertUtil;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.alibaba.csp.sentinel.util.AssertUtil;
 
 /**
  * <p>Registry for circuit breaker event observers.</p>

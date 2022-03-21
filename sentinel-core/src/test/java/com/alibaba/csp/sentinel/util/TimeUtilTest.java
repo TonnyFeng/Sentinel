@@ -15,17 +15,16 @@
  */
 package com.alibaba.csp.sentinel.util;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import com.alibaba.csp.sentinel.log.RecordLog;
+import com.alibaba.csp.sentinel.util.function.Tuple2;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.junit.Before;
-import org.junit.Test;
-
-import com.alibaba.csp.sentinel.log.RecordLog;
-import com.alibaba.csp.sentinel.util.function.Tuple2;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author jason

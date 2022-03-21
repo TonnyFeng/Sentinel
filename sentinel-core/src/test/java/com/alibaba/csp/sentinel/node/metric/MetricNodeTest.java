@@ -16,10 +16,9 @@
 package com.alibaba.csp.sentinel.node.metric;
 
 import com.alibaba.csp.sentinel.ResourceTypeConstants;
-
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author Eric Zhao

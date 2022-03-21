@@ -15,15 +15,14 @@
  */
 package com.alibaba.csp.sentinel;
 
-import static org.junit.Assert.*;
+import com.alibaba.csp.sentinel.context.ContextUtil;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
+import com.alibaba.csp.sentinel.util.StringUtil;
+import org.junit.Test;
 
 import java.lang.reflect.Method;
 
-import org.junit.Test;
-
-import com.alibaba.csp.sentinel.util.StringUtil;
-import com.alibaba.csp.sentinel.context.ContextUtil;
-import com.alibaba.csp.sentinel.slots.block.BlockException;
+import static org.junit.Assert.*;
 
 /**
  * Test cases for {@link SphU}.

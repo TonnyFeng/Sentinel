@@ -15,10 +15,10 @@
  */
 package com.alibaba.csp.sentinel;
 
-import java.lang.reflect.Method;
-
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.alibaba.csp.sentinel.slots.system.SystemRule;
+
+import java.lang.reflect.Method;
 
 /**
  * The basic interface for recording statistics and performing rule checking for resources.

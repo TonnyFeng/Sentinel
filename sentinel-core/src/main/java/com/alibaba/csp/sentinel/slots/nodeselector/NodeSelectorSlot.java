@@ -135,7 +135,7 @@ public class NodeSelectorSlot extends AbstractLinkedProcessorSlot<Object> {
     @Override
     public void entry(Context context, ResourceWrapper resourceWrapper, Object obj, int count, boolean prioritized, Object... args)
         throws Throwable {
-        /*
+        /**
          * It's interesting that we use context name rather resource name as the map key.
          *
          * Remember that same resource({@link ResourceWrapper#equals(Object)}) will share

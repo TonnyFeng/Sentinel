@@ -15,21 +15,19 @@
  */
 package com.alibaba.csp.sentinel.dashboard.rule.nacos;
 
-import java.util.List;
-
+import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.DegradeRuleEntity;
 import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.FlowRuleEntity;
 import com.alibaba.csp.sentinel.datasource.Converter;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.nacos.api.PropertyKeyConst;
 import com.alibaba.nacos.api.config.ConfigFactory;
 import com.alibaba.nacos.api.config.ConfigService;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * @author Eric Zhao
- * @since 1.4.0
- */
+import java.util.List;
+import java.util.Properties;
+
 @Configuration
 public class NacosConfig {
 
@@ -44,7 +42,24 @@ public class NacosConfig {
     }
 
     @Bean
-    public ConfigService nacosConfigService() throws Exception {
-        return ConfigFactory.createConfigService("localhost");
+    public Converter<List<DegradeRuleEntity>, String> degradeRuleEntityEncoder() {
+        return JSON::toJSONString;
+    }
+
+    @Bean
+    public Converter<String, List<DegradeRuleEntity>> degradeRuleEntityDecoder() {
+        return s -> JSON.parseArray(s, DegradeRuleEntity.class);
+    }
+
+    @Bean
+    public ConfigService nacosConfigService(NacosPropertiesConfiguration nacosPropertiesConfiguration) throws Exception {
+        Properties properties = new Properties();
+        properties.put(PropertyKeyConst.SERVER_ADDR, nacosPropertiesConfiguration.getServerAddr());
+        properties.put(PropertyKeyConst.NAMESPACE, nacosPropertiesConfiguration.getNamespace());
+        properties.put("groupId", nacosPropertiesConfiguration.getGroupId());
+        properties.put(PropertyKeyConst.USERNAME, nacosPropertiesConfiguration.getUsername());
+        properties.put(PropertyKeyConst.PASSWORD, nacosPropertiesConfiguration.getPassword());
+        return ConfigFactory.createConfigService(properties);
+        //  return ConfigFactory.createConfigService("localhost"); // 原代码
     }
 }

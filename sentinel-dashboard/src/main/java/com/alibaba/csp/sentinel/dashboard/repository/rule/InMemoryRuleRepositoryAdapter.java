@@ -14,15 +14,14 @@
  * limitations under the License.
  */
 package com.alibaba.csp.sentinel.dashboard.repository.rule;
+import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.RuleEntity;
+import com.alibaba.csp.sentinel.dashboard.discovery.MachineInfo;
+import com.alibaba.csp.sentinel.util.AssertUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
-import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.RuleEntity;
-import com.alibaba.csp.sentinel.dashboard.discovery.MachineInfo;
-import com.alibaba.csp.sentinel.util.AssertUtil;
 
 /**
  * @author leyou
@@ -42,16 +41,16 @@ public abstract class InMemoryRuleRepositoryAdapter<T extends RuleEntity> implem
     @Override
     public T save(T entity) {
         if (entity.getId() == null) {
-            entity.setId(nextId());
+            entity.setId(nextId(entity));
         }
         T processedEntity = preProcess(entity);
         if (processedEntity != null) {
             allRules.put(processedEntity.getId(), processedEntity);
             machineRules.computeIfAbsent(MachineInfo.of(processedEntity.getApp(), processedEntity.getIp(),
-                processedEntity.getPort()), e -> new ConcurrentHashMap<>(32))
-                .put(processedEntity.getId(), processedEntity);
+                            processedEntity.getPort()), e -> new ConcurrentHashMap<>(32))
+                    .put(processedEntity.getId(), processedEntity);
             appRules.computeIfAbsent(processedEntity.getApp(), v -> new ConcurrentHashMap<>(32))
-                .put(processedEntity.getId(), processedEntity);
+                    .put(processedEntity.getId(), processedEntity);
         }
 
         return processedEntity;
@@ -125,5 +124,5 @@ public abstract class InMemoryRuleRepositoryAdapter<T extends RuleEntity> implem
      *
      * @return next unused id
      */
-    abstract protected long nextId();
+    abstract protected long nextId(T entity);
 }

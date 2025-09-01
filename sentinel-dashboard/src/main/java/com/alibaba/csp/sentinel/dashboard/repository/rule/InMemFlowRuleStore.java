@@ -15,12 +15,14 @@
  */
 package com.alibaba.csp.sentinel.dashboard.repository.rule;
 
+import java.util.Comparator;
 import java.util.concurrent.atomic.AtomicLong;
 
 import com.alibaba.csp.sentinel.dashboard.datasource.entity.rule.FlowRuleEntity;
 import com.alibaba.csp.sentinel.slots.block.flow.ClusterFlowConfig;
 
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
 /**
  * Store {@link FlowRuleEntity} in memory.
@@ -33,7 +35,13 @@ public class InMemFlowRuleStore extends InMemoryRuleRepositoryAdapter<FlowRuleEn
     private static AtomicLong ids = new AtomicLong(0);
 
     @Override
-    protected long nextId() {
+    protected long nextId(FlowRuleEntity entity) {
+        if (ids.intValue() == 0) {//如果是重启后 且存在已有规则则赋值为最大id+1
+            if (!CollectionUtils.isEmpty(this.findAllByApp(entity.getApp()))) {
+                long maxId = this.findAllByApp(entity.getApp()).stream().max(Comparator.comparingLong(FlowRuleEntity::getId)).get().getId();
+                ids.set(maxId);
+            }
+        }
         return ids.incrementAndGet();
     }
 

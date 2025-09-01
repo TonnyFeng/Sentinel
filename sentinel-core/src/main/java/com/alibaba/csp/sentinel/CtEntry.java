@@ -87,6 +87,13 @@ class CtEntry extends Entry {
         }
     }
 
+/**
+ * 退出当前上下文并执行相关清理工作
+ * @param context 上下文对象，可能为null
+ * @param count 退出计数
+ * @param args 可变参数，传递给退出处理程序
+ * @throws ErrorEntryFreeException 当入口退出顺序不匹配时抛出异常
+ */
     protected void exitForContext(Context context, int count, Object... args) throws ErrorEntryFreeException {
         if (context != null) {
             // Null context should exit without clean-up.

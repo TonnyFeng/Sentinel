@@ -1,6 +1,7 @@
 package com.alibaba.csp.sentinel.dashboard.repository.metric;
 
 import com.alibaba.csp.sentinel.dashboard.config.InfluxDBConfig;
+import com.alibaba.csp.sentinel.dashboard.controller.MetricController;
 import com.alibaba.csp.sentinel.dashboard.datasource.entity.InfluxDBMetricEntity;
 import com.alibaba.csp.sentinel.dashboard.datasource.entity.MetricEntity;
 import com.alibaba.csp.sentinel.util.StringUtil;
@@ -12,6 +13,8 @@ import com.influxdb.client.domain.WritePrecision;
 import com.influxdb.query.FluxRecord;
 import com.influxdb.query.FluxTable;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -31,6 +34,7 @@ import java.util.stream.Collectors;
 @Primary
 public class InfluxDBMetricsRepository implements MetricsRepository<MetricEntity> {
 
+    private static Logger logger = LoggerFactory.getLogger(InfluxDBMetricsRepository.class);
     @Autowired
     private InfluxDBConfig influxDBConfig;
 
@@ -102,8 +106,6 @@ public class InfluxDBMetricsRepository implements MetricsRepository<MetricEntity
      */
     @Override
     public synchronized List<MetricEntity> queryByAppAndResourceBetween(String app, String resource, long startTime, long endTime) {
-
-        log.info("queryByAppAndResourceBetween app:{}, resource:{}, startTime:{}, endTime:{}", app, resource, startTime, endTime);
         List<MetricEntity> results = new ArrayList<>();
         if (StringUtil.isBlank(app)) {
             return results;
@@ -117,7 +119,6 @@ public class InfluxDBMetricsRepository implements MetricsRepository<MetricEntity
                 DateTimeFormatter.ISO_INSTANT.format(end), app, resource);
 
         List<FluxTable> tables = queryApi.query(flux);
-        log.info(" queryByAppAndResourceBetween tables : {}", JSONObject.toJSONString( tables ));
         for (FluxTable fluxTable : tables) {
             List<FluxRecord> records = fluxTable.getRecords();
             for (FluxRecord fluxRecord : records) {
@@ -125,7 +126,6 @@ public class InfluxDBMetricsRepository implements MetricsRepository<MetricEntity
                 results.add(metricEntity);
             }
         }
-        log.info(" queryByAppAndResourceBetween results : {}", JSONObject.toJSONString( results ));
         return results;
     }
 
@@ -143,10 +143,8 @@ public class InfluxDBMetricsRepository implements MetricsRepository<MetricEntity
                 influxDBConfig.getInfluxBucket(), app);
 
         List<MetricEntity> influxResults = new ArrayList<>();
-        log.info("command:{}", command);
         // 查询
         List<FluxTable> tables = queryApi.query(command);
-        log.info(" tables : {}", JSONObject.toJSONString( tables ));
         for (FluxTable fluxTable : tables) {
             List<FluxRecord> records = fluxTable.getRecords();
             for (FluxRecord fluxRecord : records) {
@@ -154,7 +152,6 @@ public class InfluxDBMetricsRepository implements MetricsRepository<MetricEntity
                 influxResults.add(metricEntity);
             }
         }
-        log.info(" influxResults : {}", JSONObject.toJSONString( influxResults ));
         try {
 
             if (CollectionUtils.isEmpty(influxResults)) {
@@ -176,7 +173,6 @@ public class InfluxDBMetricsRepository implements MetricsRepository<MetricEntity
                     resourceCount.put(resource, metricEntity);
                 }
             }
-            log.info(" resourceCount : {}", JSONObject.toJSONString( resourceCount ));
             //排序
             results = resourceCount.entrySet()
                     .stream()
@@ -192,7 +188,6 @@ public class InfluxDBMetricsRepository implements MetricsRepository<MetricEntity
                     })
                     .map(Map.Entry::getKey)
                     .collect(Collectors.toList());
-            log.info(" results : {}", JSONObject.toJSONString( results ));
         } catch (Exception e) {
 
             e.printStackTrace();

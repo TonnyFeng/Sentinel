@@ -51,7 +51,7 @@ public class MetricController {
     private static final long maxQueryIntervalMs = 1000 * 60 * 60;
 
     @Autowired
-    private MetricsRepository<MetricEntity> metricStore;
+    private MetricsRepository<MetricEntity> influxDBMetricsRepository;
 
     @ResponseBody
     @RequestMapping("/queryTopResourceMetric.json")
@@ -84,8 +84,8 @@ public class MetricController {
         if (endTime - startTime > maxQueryIntervalMs) {
             return Result.ofFail(-1, "time intervalMs is too big, must <= 1h");
         }
-        List<String> resources = metricStore.listResourcesOfApp(app);
-        logger.debug("queryTopResourceMetric(), resources.size()={}", resources.size());
+        List<String> resources = influxDBMetricsRepository.listResourcesOfApp(app);
+        logger.info("queryTopResourceMetric(), resources.size()={}", resources.size());
 
         if (resources == null || resources.isEmpty()) {
             return Result.ofSuccess(null);
@@ -112,7 +112,7 @@ public class MetricController {
         logger.debug("topResource={}", topResource);
         long time = System.currentTimeMillis();
         for (final String resource : topResource) {
-            List<MetricEntity> entities = metricStore.queryByAppAndResourceBetween(
+            List<MetricEntity> entities = influxDBMetricsRepository.queryByAppAndResourceBetween(
                 app, resource, startTime, endTime);
             logger.debug("resource={}, entities.size()={}", resource, entities == null ? "null" : entities.size());
             List<MetricVo> vos = MetricVo.fromMetricEntities(entities, resource);
@@ -153,7 +153,7 @@ public class MetricController {
         if (endTime - startTime > maxQueryIntervalMs) {
             return Result.ofFail(-1, "time intervalMs is too big, must <= 1h");
         }
-        List<MetricEntity> entities = metricStore.queryByAppAndResourceBetween(
+        List<MetricEntity> entities = influxDBMetricsRepository.queryByAppAndResourceBetween(
             app, identity, startTime, endTime);
         List<MetricVo> vos = MetricVo.fromMetricEntities(entities, identity);
         return Result.ofSuccess(sortMetricVoAndDistinct(vos));

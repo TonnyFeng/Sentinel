@@ -81,7 +81,7 @@ public class MetricFetcher {
     private Map<String, AtomicLong> appLastFetchTime = new ConcurrentHashMap<>();
 
     @Autowired
-    private MetricsRepository<MetricEntity> metricStore;
+    private MetricsRepository<MetricEntity> influxDBMetricsRepository;
     @Autowired
     private AppManagement appManagement;
 
@@ -143,7 +143,7 @@ public class MetricFetcher {
             entity.setGmtCreate(date);
             entity.setGmtModified(date);
         }
-        metricStore.saveAll(map.values());
+        influxDBMetricsRepository.saveAll(map.values());
     }
 
     /**

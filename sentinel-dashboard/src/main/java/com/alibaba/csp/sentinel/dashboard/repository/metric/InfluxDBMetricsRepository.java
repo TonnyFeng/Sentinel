@@ -1,11 +1,9 @@
 package com.alibaba.csp.sentinel.dashboard.repository.metric;
 
 import com.alibaba.csp.sentinel.dashboard.config.InfluxDBConfig;
-import com.alibaba.csp.sentinel.dashboard.controller.MetricController;
 import com.alibaba.csp.sentinel.dashboard.datasource.entity.InfluxDBMetricEntity;
 import com.alibaba.csp.sentinel.dashboard.datasource.entity.MetricEntity;
 import com.alibaba.csp.sentinel.util.StringUtil;
-import com.alibaba.fastjson.JSONObject;
 import com.influxdb.client.InfluxDBClient;
 import com.influxdb.client.QueryApi;
 import com.influxdb.client.WriteApiBlocking;

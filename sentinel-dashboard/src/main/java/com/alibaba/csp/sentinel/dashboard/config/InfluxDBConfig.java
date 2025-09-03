@@ -1,10 +1,7 @@
 package com.alibaba.csp.sentinel.dashboard.config;
 
 
-import com.influxdb.client.InfluxDBClient;
-import com.influxdb.client.InfluxDBClientFactory;
-import com.influxdb.client.QueryApi;
-import com.influxdb.client.WriteApiBlocking;
+import com.influxdb.client.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,8 +32,6 @@ public class InfluxDBConfig {
      */
     @Value("${spring.influx.bucket:''}")
     private String influxBucket;
-
-
 
     /**
      * 初始化influx client
@@ -70,6 +65,12 @@ public class InfluxDBConfig {
         return queryApi;
     }
 
+    @Bean
+    public DeleteApi deleteApi(InfluxDBClient influxDBClient) {
+        DeleteApi deleteApi = influxDBClient.getDeleteApi();
+        return deleteApi;
+    }
+
     public String getInfluxUrl() {
         return influxUrl;
     }
@@ -101,4 +102,5 @@ public class InfluxDBConfig {
     public void setInfluxBucket(String influxBucket) {
         this.influxBucket = influxBucket;
     }
+
 }

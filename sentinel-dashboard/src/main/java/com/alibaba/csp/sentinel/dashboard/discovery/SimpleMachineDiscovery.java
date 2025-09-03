@@ -63,8 +63,16 @@ public class SimpleMachineDiscovery implements MachineDiscovery {
         return apps.get(app);
     }
 
+/**
+ * 获取所有应用程序的简要信息集合
+ * 该方法返回一个包含所有应用程序信息的Set集合
+ *
+ * @return 包含所有AppInfo的Set集合，通过HashSet实现
+ */
     @Override
     public Set<AppInfo> getBriefApps() {
+    // 创建一个新的HashSet，并将apps中的所有值添加到这个新集合中
+    // 这样可以避免直接返回内部集合，保证封装性
         return new HashSet<>(apps.values());
     }
 

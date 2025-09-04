@@ -45,6 +45,6 @@ public class FlowRuleZookeeperPublisher implements DynamicRulePublisher<List<Flo
             zkClient.create().creatingParentContainersIfNeeded().withMode(CreateMode.PERSISTENT).forPath(path, null);
         }
         byte[] data = CollectionUtils.isEmpty(rules) ? "[]".getBytes() : converter.convert(rules).getBytes();
-        zkClient.setData().forPath(path, data);
+        Stat stat1 = zkClient.setData().forPath(path, data);
     }
 }

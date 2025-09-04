@@ -42,10 +42,10 @@ public class FlowRuleApiPublisher implements DynamicRulePublisher<List<FlowRuleE
     @Override
     public void publish(String app, List<FlowRuleEntity> rules) throws Exception {
         if (StringUtil.isBlank(app)) {
-            return;
+            return ;
         }
         if (rules == null) {
-            return;
+            return ;
         }
         Set<MachineInfo> set = appManagement.getDetailApp(app).getMachines();
 

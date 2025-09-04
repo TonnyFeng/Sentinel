@@ -32,6 +32,8 @@ import com.alibaba.nacos.api.NacosFactory;
 import com.alibaba.nacos.api.PropertyKeyConst;
 import com.alibaba.nacos.api.config.ConfigService;
 import com.alibaba.nacos.api.config.listener.Listener;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A read-only {@code DataSource} with Nacos backend. When the data in Nacos backend has been modified,
@@ -42,6 +44,7 @@ import com.alibaba.nacos.api.config.listener.Listener;
 public class NacosDataSource<T> extends AbstractDataSource<String, T> {
 
     private static final int DEFAULT_TIMEOUT = 3000;
+    private static final Logger log = LoggerFactory.getLogger(NacosDataSource.class);
 
     /**
      * Single-thread pool. Once the thread pool is blocked, we throw up the old task.
@@ -138,7 +141,9 @@ public class NacosDataSource<T> extends AbstractDataSource<String, T> {
         if (configService == null) {
             throw new IllegalStateException("Nacos config service has not been initialized or error occurred");
         }
-        return configService.getConfig(dataId, groupId, DEFAULT_TIMEOUT);
+        String config = configService.getConfig(dataId, groupId, DEFAULT_TIMEOUT);
+        log.info("Nacos data source read: dataId {} groupId {} config {}", dataId , groupId, config);
+        return config;
     }
 
     @Override

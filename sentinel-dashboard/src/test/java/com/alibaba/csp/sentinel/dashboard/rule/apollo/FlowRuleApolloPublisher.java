@@ -45,7 +45,7 @@ public class FlowRuleApolloPublisher implements DynamicRulePublisher<List<FlowRu
     public void publish(String app, List<FlowRuleEntity> rules) throws Exception {
         AssertUtil.notEmpty(app, "app name cannot be empty");
         if (rules == null) {
-            return;
+            return ;
         }
 
         // Increase the configuration

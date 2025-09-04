@@ -47,12 +47,12 @@ public class FlowRuleNacosPublisher implements DynamicRulePublisher<List<FlowRul
     public void publish(String app, List<FlowRuleEntity> rules) throws Exception {
         AssertUtil.notEmpty(app, "app name cannot be empty");
         if (rules == null) {
-            return;
+            return ;
         }
         // 美化xxx-flow-rules.yml配置中的格式
         String prettyFormat = toPrettyFormat(JSONArray.toJSONString(rules));
         log.info("flow rules change and publish, app=" + app + ", rules=" + prettyFormat);
-        configService.publishConfig(app + NacosConfigUtil.FLOW_DATA_ID_POSTFIX,
+        boolean result = configService.publishConfig(app + NacosConfigUtil.FLOW_DATA_ID_POSTFIX,
                 NacosConfigUtil.GROUP_ID, prettyFormat, ConfigType.JSON.getType());
     }
 

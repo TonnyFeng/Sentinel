@@ -28,9 +28,11 @@ public final class NacosConfigUtil {
      * 增加对熔断规则的支持
      */
     public static final String DEGRADE_DATA_ID_POSTFIX = "-degrade-rules";
+    public static final String AUTHORITY_DATA_ID_POSTFIX = "-authority-rules";
 
     public static final String PARAM_FLOW_DATA_ID_POSTFIX = "-param-rules";
     public static final String CLUSTER_MAP_DATA_ID_POSTFIX = "-cluster-map";
+    public static final String SYSTEM_DATA_ID_POSTFIX = "-system-rules";
 
     /**
      * cc for `cluster-client`

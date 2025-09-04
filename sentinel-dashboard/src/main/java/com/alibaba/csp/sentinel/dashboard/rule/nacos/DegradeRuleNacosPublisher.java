@@ -34,12 +34,12 @@ public class DegradeRuleNacosPublisher implements DynamicRulePublisher<List<Degr
     public void publish(String app, List<DegradeRuleEntity> rules) throws Exception {
         AssertUtil.notEmpty(app, "app name cannot be empty");
         if (rules == null) {
-            return;
+            return ;
         }
         // 美化xxxx-degrade-rules.yml配置中的格式
         String prettyFormat = toPrettyFormat(JSONArray.toJSONString(rules));
         log.info("degrade rules change and publish, app=" + app + ", rules=" + prettyFormat);
-        configService.publishConfig(app + NacosConfigUtil.DEGRADE_DATA_ID_POSTFIX,
+        boolean result = configService.publishConfig(app + NacosConfigUtil.DEGRADE_DATA_ID_POSTFIX,
                 NacosConfigUtil.GROUP_ID, prettyFormat, ConfigType.JSON.getType());
     }
 

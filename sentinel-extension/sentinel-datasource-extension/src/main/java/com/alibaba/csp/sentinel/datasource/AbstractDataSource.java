@@ -41,7 +41,8 @@ public abstract class AbstractDataSource<S, T> implements ReadableDataSource<S, 
 
     @Override
     public T loadConfig() throws Exception {
-        return loadConfig(readSource());
+        S s = readSource();
+        return loadConfig(s);
     }
 
     public T loadConfig(S conf) throws Exception {

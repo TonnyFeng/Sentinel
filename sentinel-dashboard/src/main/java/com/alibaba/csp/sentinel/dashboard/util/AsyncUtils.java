@@ -38,6 +38,10 @@ public final class AsyncUtils {
         return future;
     }
 
+    public static CompletableFuture<Void> newSuccessFuture() {
+        return CompletableFuture.completedFuture(null);
+    }
+
     public static <R> CompletableFuture<List<R>> sequenceFuture(List<CompletableFuture<R>> futures) {
         return CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]))
             .thenApply(v -> futures.stream()
